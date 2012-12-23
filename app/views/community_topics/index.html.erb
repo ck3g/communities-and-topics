@@ -13,13 +13,13 @@
   <tr>
     <td><%= community_topic.name %></td>
     <td><%= community_topic.community_id %></td>
-    <td><%= link_to 'Show', community_topic %></td>
-    <td><%= link_to 'Edit', edit_community_topic_path(community_topic) %></td>
-    <td><%= link_to 'Destroy', community_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [@community, community_topic] %></td>
+    <td><%= link_to 'Edit', [:edit, @community, community_topic] %></td>
+    <td><%= link_to 'Destroy', [@community, community_topic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Community topic', new_community_topic_path %>
+<%= link_to 'New Community topic', new_community_topic_path(@community) %>
