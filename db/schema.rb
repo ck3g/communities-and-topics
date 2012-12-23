@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223144748) do
+ActiveRecord::Schema.define(:version => 20121223145602) do
 
   create_table "communities", :force => true do |t|
     t.string   "name"
@@ -19,5 +19,14 @@ ActiveRecord::Schema.define(:version => 20121223144748) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "community_topics", :force => true do |t|
+    t.string   "name"
+    t.integer  "community_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "community_topics", ["community_id"], :name => "index_community_topics_on_community_id"
 
 end

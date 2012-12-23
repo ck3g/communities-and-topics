@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @community_topic.name %>
+</p>
+
+<p>
+  <b>Community:</b>
+  <%= @community_topic.community_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_community_topic_path(@community, @community_topic) %> |
+<%= link_to 'Back', community_topic_index_path(@community) %>

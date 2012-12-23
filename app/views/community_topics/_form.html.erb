@@ -1,0 +1,25 @@
+<%= form_for([@community, @community_topic]) do |f| %>
+  <% if @community_topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@community_topic.errors.count, "error") %> prohibited this community_topic from being saved:</h2>
+
+      <ul>
+      <% @community_topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :community_id %><br />
+    <%= f.number_field :community_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
