@@ -10,6 +10,13 @@
   <%= @community.description %>
 </p>
 
+<h3>Topics</h3>
+<ul>
+  <% @community.community_topics.each do |topic| %>
+    <li><%= link_to topic.name, [@community, topic] %></li>
+  <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_community_path(@community) %> |
 <%= link_to 'Back', communities_path %>
