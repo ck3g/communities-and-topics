@@ -86,6 +86,7 @@ class CommunityTopicsController < ApplicationController
 
   private
   def find_community
-    @community = Community.find params[:community_id]
+    # @community = Community.find params[:community_id] # without to_param
+    @community = Community.find_by_slug params[:community_id] # with to_param
   end
 end

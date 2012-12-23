@@ -1,4 +1,6 @@
 class CommunitiesController < ApplicationController
+  before_filter :find_community, except: :index
+
   # GET /communities
   # GET /communities.json
   def index
@@ -13,7 +15,6 @@ class CommunitiesController < ApplicationController
   # GET /communities/1
   # GET /communities/1.json
   def show
-    @community = Community.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,13 +35,13 @@ class CommunitiesController < ApplicationController
 
   # GET /communities/1/edit
   def edit
-    @community = Community.find(params[:id])
   end
 
   # POST /communities
   # POST /communities.json
   def create
     @community = Community.new(params[:community])
+    @community.slug = @community.name.parameterize
 
     respond_to do |format|
       if @community.save
@@ -56,7 +57,6 @@ class CommunitiesController < ApplicationController
   # PUT /communities/1
   # PUT /communities/1.json
   def update
-    @community = Community.find(params[:id])
 
     respond_to do |format|
       if @community.update_attributes(params[:community])
@@ -72,12 +72,17 @@ class CommunitiesController < ApplicationController
   # DELETE /communities/1
   # DELETE /communities/1.json
   def destroy
-    @community = Community.find(params[:id])
     @community.destroy
 
     respond_to do |format|
       format.html { redirect_to communities_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def find_community
+    # @community = Community.find params[:id] # without to_param
+    @community = Community.find_by_slug params[:id] # with to_param
   end
 end
